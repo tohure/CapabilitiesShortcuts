@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import io.tohure.capabilitiesdemo.R
 import io.tohure.capabilitiesdemo.databinding.FragmentOrderBinding
 
 class OrderFragment : Fragment() {
@@ -23,15 +25,17 @@ class OrderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setViewModel()
         setUI()
     }
 
-    private fun setViewModel() {
-
-    }
-
     private fun setUI() {
-
+        context?.let {
+            Glide
+                .with(it)
+                .load("https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg")
+                .centerCrop()
+                .placeholder(R.drawable.ic_load_product)
+                .into(binding.ivProduct)
+        }
     }
 }
