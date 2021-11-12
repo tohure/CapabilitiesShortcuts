@@ -32,7 +32,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hvScroll" />
+        app:layout_constraintTop_toBottomOf="@+id/hvScroll"
+        tools:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProducts"
@@ -44,7 +45,8 @@
         app:layout_constraintEnd_toEndOf="@+id/hvScroll"
         app:layout_constraintStart_toStartOf="@+id/hvScroll"
         app:layout_constraintTop_toBottomOf="@+id/hvScroll"
-        tools:listitem="@layout/product_card_row" />
+        tools:listitem="@layout/product_card_row"
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
