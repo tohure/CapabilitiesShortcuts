@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">Accesos Directos</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="label_product">Productos</string>
+
     <string name="label_order">Orden</string>
     <string name="product_img_label">Imagen del Producto</string>
     <string name="label_products">Productos</string>
     <string name="label_orders">Órdenes</string>
     <string name="label_account">Cuenta</string>
+
+    <string name="disabled_label_shortcut">Hay un problema</string>
+    <string name="account_short_label_shortcut">Mi cuenta</string>
+    <string name="account_long_label_shortcut">Entrar a mi cuenta</string>
 </resources>

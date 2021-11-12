@@ -4,7 +4,7 @@
         android:id="@+id/productsFragment"
         android:enabled="true"
         android:icon="@drawable/ic_product"
-        android:title="@string/label_product"/>
+        android:title="@string/label_products"/>
     <item
         android:id="@+id/orderFragment"
         android:enabled="true"

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="n_mr1">
+
+    //Static Shortcut
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_account_short"
+        android:shortcutDisabledMessage="@string/disabled_label_shortcut"
+        android:shortcutId="account"
+        android:shortcutLongLabel="@string/account_long_label_shortcut"
+        android:shortcutShortLabel="@string/account_short_label_shortcut">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="shortcutapp://account_view"
+            android:targetClass="io.tohure.capabilitiesdemo.view.HomeActivity"
+            android:targetPackage="io.tohure.capabilitiesdemo" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+</shortcuts>

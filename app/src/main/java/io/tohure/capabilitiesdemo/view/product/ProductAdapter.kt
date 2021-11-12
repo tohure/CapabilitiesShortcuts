@@ -2,6 +2,7 @@ package io.tohure.capabilitiesdemo.view.product
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,10 @@ class ProductAdapter : ListAdapter<Product, ProductAdapter.ViewHolder>(ProductDi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = getItem(position)
         with(holder.binding) {
+            root.setOnClickListener {
+                Toast.makeText(root.context, "Producto agregado y comprado", Toast.LENGTH_SHORT)
+                    .show()
+            }
             tvProductTitle.text = product.title
             tvProductPrice.text = "$${product.price}"
             Glide
