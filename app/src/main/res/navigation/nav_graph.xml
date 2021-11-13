@@ -20,5 +20,7 @@
         android:id="@+id/orderFragment"
         android:name="io.tohure.capabilitiesdemo.view.order.OrderFragment"
         android:label="@string/label_orders"
-        tools:layout="@layout/fragment_order" />
+        tools:layout="@layout/fragment_order">
+        <deepLink app:uri="shortcutapp://order_view" />
+    </fragment>
 </navigation>

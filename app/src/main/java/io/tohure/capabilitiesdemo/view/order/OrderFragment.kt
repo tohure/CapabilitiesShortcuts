@@ -1,6 +1,7 @@
 package io.tohure.capabilitiesdemo.view.order
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,15 @@ class OrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUI()
+
+        val assistantExtra = requireActivity().intent?.extras
+
+        if (assistantExtra != null) {
+            for (extraKey in assistantExtra.keySet()) {
+                Log.v("tohure", "Extra: " + extraKey + ": " + assistantExtra.get(extraKey))
+            }
+        }
+
     }
 
     private fun setUI() {

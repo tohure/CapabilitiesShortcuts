@@ -10,4 +10,7 @@
     <string name="disabled_label_shortcut">Hay un problema</string>
     <string name="account_short_label_shortcut">Mi cuenta</string>
     <string name="account_long_label_shortcut">Entrar a mi cuenta</string>
+    <string name="order_short_label_shortcut">Mis órdenes</string>
+    <string name="order_long_label_shortcut">Entrar a mis órdenes</string>
+    <string name="status_order">Estado de pedidos</string>
 </resources>

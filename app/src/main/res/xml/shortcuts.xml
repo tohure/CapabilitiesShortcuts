@@ -19,4 +19,20 @@
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
 
+    //Simple Capability
+    <capability android:name="actions.intent.GET_ORDER">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="shortcutapp://order_view"
+            android:targetClass="io.tohure.capabilitiesdemo.view.HomeActivity"
+            android:targetPackage="io.tohure.capabilitiesdemo">
+            <parameter
+                android:name="order.orderDate"
+                android:key="orderDate" />
+            <parameter
+                android:name="order.orderedItem.name"
+                android:key="name" />
+        </intent>
+    </capability>
+
 </shortcuts>

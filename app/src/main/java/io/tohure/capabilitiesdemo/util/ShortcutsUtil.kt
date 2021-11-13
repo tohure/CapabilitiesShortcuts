@@ -37,17 +37,16 @@ object ShortcutsUtil {
         }
     }
 
-    private fun getShortCutInfo(context: Context): ShortcutInfoCompat {
-        return ShortcutInfoCompat.Builder(context, "website")
-                .setShortLabel("Abrir Github")
-                .setLongLabel("Abrir Github de ejemplo")
-                .setIcon(IconCompat.createWithResource(context, R.drawable.ic_webview))
-                .setIntent(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://github.com/Tohure/CapabilitiesShortcuts")
-                    )
+    private fun getShortCutInfo(context: Context) =
+        ShortcutInfoCompat.Builder(context, "website")
+            .setShortLabel("Abrir Github")
+            .setLongLabel("Abrir Github de ejemplo")
+            .setIcon(IconCompat.createWithResource(context, R.drawable.ic_webview))
+            .setIntent(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://github.com/Tohure/CapabilitiesShortcuts")
                 )
-                .build()
-    }
+            )
+            .build()
 }
