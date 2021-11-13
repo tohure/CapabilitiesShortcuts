@@ -10,6 +10,9 @@ import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
 import io.tohure.capabilitiesdemo.R
+import android.R.id
+import androidx.core.net.toUri
+import io.tohure.capabilitiesdemo.view.HomeActivity
 
 object ShortcutsUtil {
 
@@ -35,6 +38,22 @@ object ShortcutsUtil {
                 pinnedShortcutCallback.intentSender
             )
         }
+    }
+
+    fun setAssistantShortcut(context: Context) {
+        val intent = Intent(context, HomeActivity::class.java).apply {
+            setPackage("io.tohure.capabilitiesdemo")
+            data = "shortcutapp://order_view".toUri()
+            action = Intent.ACTION_VIEW
+        }
+
+        val scBuilder = ShortcutInfoCompat.Builder(context, "coffee")
+            .setShortLabel("Pedir café")
+            .setLongLabel("Pedir una taza de café")
+            .addCapabilityBinding("actions.intent.ORDER_MENU_ITEM")
+            .setIntent(intent)
+
+        ShortcutManagerCompat.pushDynamicShortcut(context, scBuilder.build())
     }
 
     private fun getShortCutInfo(context: Context) =

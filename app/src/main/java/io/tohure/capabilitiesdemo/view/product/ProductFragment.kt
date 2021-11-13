@@ -1,6 +1,7 @@
 package io.tohure.capabilitiesdemo.view.product
 
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
@@ -34,8 +35,26 @@ class ProductFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setViewModel()
+
+        val assistantExtra = requireActivity().intent?.extras
+        val queryParameter = assistantExtra?.getString("featureParam") ?: ""
+
+        //Log extras
+        if (assistantExtra != null) {
+            for (extraKey in assistantExtra.keySet()) {
+                Log.v("-thr", "Extra: " + extraKey + ": " + assistantExtra.get(extraKey))
+            }
+        }
+
+        setObservers()
         setUI()
+
+        //Call Products
+        if (queryParameter.isEmpty()) {
+            productViewModel.getProducts()
+        } else {
+            productViewModel.getProductsByCategory(queryParameter)
+        }
     }
 
     private fun setUI() {
@@ -47,12 +66,11 @@ class ProductFragment : Fragment() {
         }
     }
 
-    private fun setViewModel() {
+    private fun setObservers() {
         with(productViewModel) {
-            getCategories()
             categoryList.observe(viewLifecycleOwner, renderCategories)
             productList.observe(viewLifecycleOwner, renderProducts)
-            getProducts()
+            getCategories()
         }
     }
 

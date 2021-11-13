@@ -29,6 +29,9 @@ class AccountFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnWebsite.setOnClickListener {
+
+            //ShortcutsUtil.setAssistantShortcut(requireContext())
+
             if (Build.VERSION.SDK_INT >= 25) {
                 ShortcutsUtil.setDynamicShortcut(requireContext())
                 toastMsg = "Dynamic Shortcut creado!"

@@ -35,4 +35,35 @@
         </intent>
     </capability>
 
+    //Binding Capabilities
+    <capability android:name="actions.intent.OPEN_APP_FEATURE">
+        <intent
+            android:targetClass="io.tohure.capabilitiesdemo.view.HomeActivity"
+            android:targetPackage="io.tohure.capabilitiesdemo">
+            <parameter
+                android:name="feature"
+                android:key="featureParam" />
+        </intent>
+    </capability>
+
+    <shortcut
+        android:enabled="false"
+        android:shortcutId="jewelery"
+        android:shortcutShortLabel="@string/jewelery_short_label_shortcut">
+        <capability-binding android:key="actions.intent.OPEN_APP_FEATURE">
+            <parameter-binding
+                android:key="feature"
+                android:value="@array/jewelery_synonyms" />
+        </capability-binding>
+    </shortcut>
+    <shortcut
+        android:enabled="false"
+        android:shortcutId="electronics"
+        android:shortcutShortLabel="@string/electronic_short_label_shortcut">
+        <capability-binding android:key="actions.intent.OPEN_APP_FEATURE">
+            <parameter-binding
+                android:key="feature"
+                android:value="@array/electronic_synonyms" />
+        </capability-binding>
+    </shortcut>
 </shortcuts>

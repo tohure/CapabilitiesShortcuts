@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="jewelery_synonyms">
+        <item>Joyería</item>
+        <item>Joyas</item>
+        <item>Alajas</item>
+    </array>
+
+    <array name="electronic_synonyms">
+        <item>electrónica</item>
+        <item>productos electrónicos</item>
+        <item>electrónicos</item>
+    </array>
+
+</resources>
