@@ -1,15 +1,20 @@
 package io.tohure.capabilitiesdemo.view.product
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
+import com.google.assistant.appactions.suggestions.client.AppShortcutIntent
+import com.google.assistant.appactions.suggestions.client.AppShortcutSuggestion
+import com.google.assistant.appactions.suggestions.client.AssistantShortcutSuggestionsClient
 import io.tohure.capabilitiesdemo.R
 import io.tohure.capabilitiesdemo.databinding.FragmentProductsBinding
 import io.tohure.capabilitiesdemo.model.Product
@@ -23,6 +28,8 @@ class ProductFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var productAdapter: ProductAdapter
+    lateinit var appShortcutIntent : AppShortcutIntent
+    lateinit var shortcutsClient : AssistantShortcutSuggestionsClient
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,6 +99,7 @@ class ProductFragment : Fragment() {
                     binding.rvProducts.visibility = View.GONE
                     binding.piLoader.visibility = View.VISIBLE
                     productViewModel.getProductsByCategory(category)
+                    inAppPromo()
                 }
             }
         )
@@ -100,5 +108,53 @@ class ProductFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun inAppPromo() {
+        shortcutsClient = AssistantShortcutSuggestionsClient.builder()
+            .setAgentUid("YOUR_AGENT_ID")
+            .setContext(requireContext())
+            .setVerifyIntents(true)
+            .build()
+
+        appShortcutIntent = AppShortcutIntent.builder()
+            .setIntentName("actions.intent.OPEN_APP_FEATURE")
+            .setPackageName("io.tohure.capabilitiesdemo")
+            .setIntentParamName("feature")
+            .setIntentParamValue("electrónica")
+            .build()
+
+        shortcutsClient.lookupShortcut(appShortcutIntent)
+            .addOnSuccessListener {
+                if (it.isShortcutPresent) {
+                    Toast.makeText(requireContext(), "Recuerda que puedes acceder a este feature por Google Assistant :)", Toast.LENGTH_SHORT).show()
+                    // app can remind that the user has a shortcut for this app action
+                } else {
+                    suggestShortcut()
+                    Toast.makeText(requireContext(), "Shortcut can be suggested", Toast.LENGTH_SHORT).show()
+                    // app can suggest to create a shortcut
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Shortcut promo Failed", Toast.LENGTH_SHORT).show()
+                Log.e("-thr", "Shortcut lookup failed", it)
+            }
+    }
+
+    private fun suggestShortcut() {
+        val orderShortcut = AppShortcutSuggestion.builder()
+            .setAppShortcutIntent(appShortcutIntent)
+            .setCommand("Buscar Productos electrónicos")
+            .build()
+
+        shortcutsClient.createShortcutSuggestionIntent(orderShortcut)
+            .addOnSuccessListener {
+                activity?.application?.startActivity(it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                Toast.makeText(requireContext(), "Suggesting Shortcut", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Shortcut suggest Failed", Toast.LENGTH_SHORT).show()
+                Log.e("tohure", "Shortcut suggest failed", it)
+            }
     }
 }
