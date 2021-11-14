@@ -9,9 +9,8 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
-import io.tohure.capabilitiesdemo.R
-import android.R.id
 import androidx.core.net.toUri
+import io.tohure.capabilitiesdemo.R
 import io.tohure.capabilitiesdemo.view.HomeActivity
 
 object ShortcutsUtil {
