@@ -99,7 +99,7 @@ class ProductFragment : Fragment() {
                     binding.rvProducts.visibility = View.GONE
                     binding.piLoader.visibility = View.VISIBLE
                     productViewModel.getProductsByCategory(category)
-                    inAppPromo()
+                    inAppPromo(category)
                 }
             }
         )
@@ -110,7 +110,7 @@ class ProductFragment : Fragment() {
         _binding = null
     }
 
-    private fun inAppPromo() {
+    private fun inAppPromo(category: String) {
         shortcutsClient = AssistantShortcutSuggestionsClient.builder()
             .setAgentUid("YOUR_AGENT_ID")
             .setContext(requireContext())
@@ -121,18 +121,18 @@ class ProductFragment : Fragment() {
             .setIntentName("actions.intent.OPEN_APP_FEATURE")
             .setPackageName("io.tohure.capabilitiesdemo")
             .setIntentParamName("feature")
-            .setIntentParamValue("electrónica")
+            .setIntentParamValue(category)
             .build()
 
         shortcutsClient.lookupShortcut(appShortcutIntent)
             .addOnSuccessListener {
                 if (it.isShortcutPresent) {
-                    Toast.makeText(requireContext(), "Recuerda que puedes acceder a este feature por Google Assistant :)", Toast.LENGTH_SHORT).show()
                     // app can remind that the user has a shortcut for this app action
+                    Toast.makeText(requireContext(), "Recuerda que puedes acceder a este feature por Google Assistant :)", Toast.LENGTH_SHORT).show()
                 } else {
-                    suggestShortcut()
-                    Toast.makeText(requireContext(), "Shortcut can be suggested", Toast.LENGTH_SHORT).show()
                     // app can suggest to create a shortcut
+                    suggestShortcut(category)
+                    Toast.makeText(requireContext(), "Shortcut can be suggested", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener {
@@ -141,10 +141,12 @@ class ProductFragment : Fragment() {
             }
     }
 
-    private fun suggestShortcut() {
+    private fun suggestShortcut(category: String) {
+        val kindProductSpanish = if (category == "jewelery") "de Joyería" else "electrónicos"
+
         val orderShortcut = AppShortcutSuggestion.builder()
             .setAppShortcutIntent(appShortcutIntent)
-            .setCommand("Buscar Productos electrónicos")
+            .setCommand("Buscar Productos $kindProductSpanish")
             .build()
 
         shortcutsClient.createShortcutSuggestionIntent(orderShortcut)
@@ -154,7 +156,7 @@ class ProductFragment : Fragment() {
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Shortcut suggest Failed", Toast.LENGTH_SHORT).show()
-                Log.e("tohure", "Shortcut suggest failed", it)
+                Log.e("-thr", "Shortcut suggest failed", it)
             }
     }
 }
