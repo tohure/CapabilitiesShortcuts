@@ -27,6 +27,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navDeepLink
+import io.tohure.capabilitiesdemo.view.account.AccountScreen
 import io.tohure.capabilitiesdemo.view.order.OrderScreen
 import io.tohure.capabilitiesdemo.view.product.ProductsListScreen
 import io.tohure.capabilitiesdemo.view.ui.theme.CapabilitiesDemoTheme
@@ -106,6 +107,12 @@ fun HomeScreen() {
             composable(
                 Screen.Order.route
             ) { OrderScreen() }
+            composable(
+                Screen.Account.route,
+                deepLinks = listOf(navDeepLink {
+                    uriPattern = "shortcutapp://account_view"
+                }),
+            ) { AccountScreen() }
         }
     }
 }
