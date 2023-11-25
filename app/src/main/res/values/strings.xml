@@ -15,4 +15,8 @@
     <string name="electronic_short_label_shortcut">Productos electrónicos</string>
     <string name="status_order">Estado de pedidos</string>
     <string name="title_activity_home_compose">HomeComposeActivity</string>
+
+    <string name="products">Productos</string>
+    <string name="order">Orden</string>
+    <string name="account">Cuenta</string>
 </resources>
