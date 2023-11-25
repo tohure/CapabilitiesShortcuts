@@ -1,28 +1,29 @@
 <resources>
+    <style name="Theme.CapabilitiesDemo" parent="android:Theme.Material.Light.NoActionBar" />
     <!-- Base application theme. -->
-    <style name="Theme.CapabilitiesDemo" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <!-- Primary brand color. -->
+    <!--<style name="Theme.CapabilitiesDemo" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        &lt;!&ndash; Primary brand color. &ndash;&gt;
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
+        &lt;!&ndash; Secondary brand color. &ndash;&gt;
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
+        &lt;!&ndash; Status bar color. &ndash;&gt;
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        &lt;!&ndash; Customize your theme here. &ndash;&gt;
     </style>
 
     <style name="ChipChoice" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="materialThemeOverlay">@style/ThemeOverlay.MyApp.Chip.Choice</item>
     </style>
 
-    <!-- Disabling elevation overlays because when chip's default background/surface
+    &lt;!&ndash; Disabling elevation overlays because when chip's default background/surface
          composite are combined with elevation overlays in a highly elevated dialog,
          the resulting color becomes too light and causes contrast
-         issues. -->
+         issues. &ndash;&gt;
     <style name="ThemeOverlay.MyApp.Chip.Choice" parent="">
         <item name="elevationOverlayEnabled">false</item>
-    </style>
+    </style>-->
 </resources>

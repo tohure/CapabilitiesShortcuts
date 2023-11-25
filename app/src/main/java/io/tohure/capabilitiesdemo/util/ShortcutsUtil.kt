@@ -12,7 +12,7 @@ import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.core.net.toUri
 import io.tohure.capabilitiesdemo.R
-import io.tohure.capabilitiesdemo.view.HomeActivity
+import io.tohure.capabilitiesdemo.view.HomeComposeActivity
 
 object ShortcutsUtil {
 
@@ -43,7 +43,7 @@ object ShortcutsUtil {
 
     @WorkerThread
     fun setAssistantShortcut(context: Context) {
-        val intent = Intent(context, HomeActivity::class.java).apply {
+        val intent = Intent(context, HomeComposeActivity::class.java).apply {
             setPackage("io.tohure.capabilitiesdemo")
             data = "shortcutapp://app.order_view".toUri()
             action = Intent.ACTION_VIEW
