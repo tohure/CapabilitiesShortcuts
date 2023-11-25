@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,8 +22,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navDeepLink
+import io.tohure.capabilitiesdemo.view.order.OrderScreen
+import io.tohure.capabilitiesdemo.view.product.ProductsListScreen
 import io.tohure.capabilitiesdemo.view.ui.theme.CapabilitiesDemoTheme
 
 class HomeComposeActivity : ComponentActivity() {
@@ -88,8 +94,19 @@ fun HomeScreen() {
                 }
             }
         }
-    ) {
-
+    ) { innerPadding ->
+        NavHost(
+            navController,
+            startDestination = Screen.Products.route,
+            Modifier.padding(innerPadding)
+        ) {
+            composable(
+                Screen.Products.route
+            ) { ProductsListScreen() }
+            composable(
+                Screen.Order.route
+            ) { OrderScreen() }
+        }
     }
 }
 
