@@ -3,6 +3,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <queries>
+        <package android:name="com.google.android.googlequicksearchbox" />
+    </queries>
+
     <application
         android:name=".app.CapabilityApp"
         android:allowBackup="false"
@@ -12,26 +16,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CapabilitiesDemo">
         <activity
-            android:name=".view.HomeActivity"
-            android:exported="true">
+            android:name=".view.HomeComposeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_home_compose"
+            android:theme="@style/Theme.CapabilitiesDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="io.tohure.capabilitiesdemo.capabilitie" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
     </application>
 
-    <queries>
-        <package android:name="com.google.android.googlequicksearchbox" />
-    </queries>
 </manifest>

@@ -1,6 +1,5 @@
 package io.tohure.capabilitiesdemo.di
 
-import io.tohure.capabilitiesdemo.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -24,7 +23,7 @@ fun provideOkHttpClient(interceptor: HttpLoggingInterceptor) =
 
 fun provideRetrofit(client: OkHttpClient): Retrofit {
     val builder = Retrofit.Builder()
-        .baseUrl(BuildConfig.BASE_URL)
+        .baseUrl("https://fakestoreapi.com")
         .addConverterFactory(GsonConverterFactory.create())
 
     return builder.client(client).build()

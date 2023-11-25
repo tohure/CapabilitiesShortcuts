@@ -14,4 +14,5 @@
     <string name="jewelery_short_label_shortcut">Productos de Joyería</string>
     <string name="electronic_short_label_shortcut">Productos electrónicos</string>
     <string name="status_order">Estado de pedidos</string>
+    <string name="title_activity_home_compose">HomeComposeActivity</string>
 </resources>
