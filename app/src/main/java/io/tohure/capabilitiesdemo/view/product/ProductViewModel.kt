@@ -9,8 +9,8 @@ import io.tohure.capabilitiesdemo.data.ProductRepository
 import io.tohure.capabilitiesdemo.model.Product
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ProductViewModel(private val repository: ProductRepository) : ViewModel() {
 
@@ -27,41 +27,49 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
     }
 
     fun getProducts() {
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            val response = repository.getProducts()
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    _productList.postValue(response.body())
-                } else {
-                    onError("Error : ${response.message()} ")
-                }
+        viewModelScope.launch {
+
+            val response = async(Dispatchers.IO + exceptionHandler) {
+                repository.getProducts()
+            }.await()
+
+            if (response.isSuccessful) {
+                _productList.postValue(response.body())
+            } else {
+                onError("Error : ${response.message()} ")
             }
+
         }
     }
 
     fun getCategories() {
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            val response = repository.getCategories()
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    _categoryList.postValue(response.body())
-                } else {
-                    onError("Error : ${response.message()} ")
-                }
+        viewModelScope.launch {
+
+            val response = async(Dispatchers.IO + exceptionHandler) {
+                repository.getCategories()
+            }.await()
+
+            if (response.isSuccessful) {
+                _categoryList.postValue(response.body())
+            } else {
+                onError("Error : ${response.message()} ")
             }
         }
     }
 
     fun getProductsByCategory(category: String) {
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            val response = repository.getProductsByCategory(category)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    _productList.postValue(response.body())
-                } else {
-                    onError("Error : ${response.message()} ")
-                }
+        viewModelScope.launch {
+
+            val response = async(Dispatchers.IO + exceptionHandler) {
+                repository.getProductsByCategory(category)
+            }.await()
+
+            if (response.isSuccessful) {
+                _productList.postValue(response.body())
+            } else {
+                onError("Error : ${response.message()} ")
             }
+
         }
     }
 

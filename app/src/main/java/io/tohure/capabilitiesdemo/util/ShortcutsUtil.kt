@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.annotation.WorkerThread
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
@@ -15,6 +16,7 @@ import io.tohure.capabilitiesdemo.view.HomeActivity
 
 object ShortcutsUtil {
 
+    @WorkerThread
     fun setDynamicShortcut(context: Context) {
         ShortcutManagerCompat.pushDynamicShortcut(context, getShortCutInfo(context))
     }
@@ -39,10 +41,11 @@ object ShortcutsUtil {
         }
     }
 
+    @WorkerThread
     fun setAssistantShortcut(context: Context) {
         val intent = Intent(context, HomeActivity::class.java).apply {
             setPackage("io.tohure.capabilitiesdemo")
-            data = "shortcutapp://order_view".toUri()
+            data = "shortcutapp://app.order_view".toUri()
             action = Intent.ACTION_VIEW
         }
 

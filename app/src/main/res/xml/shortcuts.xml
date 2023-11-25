@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shortcuts xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:targetApi="n_mr1">
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
 
     //Static Shortcut
     <shortcut
@@ -14,16 +12,14 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:data="shortcutapp://account_view"
-            android:targetClass="io.tohure.capabilitiesdemo.view.HomeActivity"
+            android:targetClass="io.tohure.capabilitiesdemo.HomeActivity"
             android:targetPackage="io.tohure.capabilitiesdemo" />
-        <categories android:name="android.shortcut.conversation" />
     </shortcut>
 
     //Simple Capability
     <capability android:name="actions.intent.GET_ORDER">
         <intent
-            android:action="android.intent.action.VIEW"
-            android:data="shortcutapp://order_view"
+            android:action="io.tohure.capabilitiesdemo.capabilitie"
             android:targetClass="io.tohure.capabilitiesdemo.view.HomeActivity"
             android:targetPackage="io.tohure.capabilitiesdemo">
             <parameter
@@ -38,6 +34,7 @@
     //Binding Capabilities
     <capability android:name="actions.intent.OPEN_APP_FEATURE">
         <intent
+            android:action="io.tohure.capabilitiesdemo.capabilitie"
             android:targetClass="io.tohure.capabilitiesdemo.view.HomeActivity"
             android:targetPackage="io.tohure.capabilitiesdemo">
             <parameter

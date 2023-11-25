@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import io.tohure.capabilitiesdemo.databinding.FragmentAccountBinding
 import io.tohure.capabilitiesdemo.util.ShortcutsUtil
+import io.tohure.capabilitiesdemo.databinding.FragmentAccountBinding
 
 class AccountFragment : Fragment() {
 
@@ -30,7 +30,7 @@ class AccountFragment : Fragment() {
 
         binding.btnWebsite.setOnClickListener {
 
-            //ShortcutsUtil.setAssistantShortcut(requireContext())
+            ShortcutsUtil.setAssistantShortcut(requireContext())
 
             if (Build.VERSION.SDK_INT >= 25) {
                 ShortcutsUtil.setDynamicShortcut(requireContext())

@@ -11,7 +11,7 @@ import io.tohure.capabilitiesdemo.R
 import io.tohure.capabilitiesdemo.databinding.ProductCardRowBinding
 import io.tohure.capabilitiesdemo.model.Product
 
-class ProductAdapter : ListAdapter<Product, ProductAdapter.ViewHolder>(ProductDiffCallBack()) {
+class ProductAdapter : ListAdapter<Product, ProductAdapter.ViewHolder>(ProductDiffCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -40,8 +40,10 @@ class ProductAdapter : ListAdapter<Product, ProductAdapter.ViewHolder>(ProductDi
     inner class ViewHolder(val binding: ProductCardRowBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    class ProductDiffCallBack : DiffUtil.ItemCallback<Product>() {
-        override fun areItemsTheSame(oldItem: Product, newItem: Product) = oldItem.id == newItem.id
-        override fun areContentsTheSame(oldItem: Product, newItem: Product) = oldItem == newItem
+    companion object {
+        private val ProductDiffCallBack = object : DiffUtil.ItemCallback<Product>() {
+            override fun areItemsTheSame(oldItem: Product, newItem: Product) = oldItem.id == newItem.id
+            override fun areContentsTheSame(oldItem: Product, newItem: Product) = oldItem == newItem
+        }
     }
 }

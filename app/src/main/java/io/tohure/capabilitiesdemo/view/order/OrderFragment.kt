@@ -32,7 +32,7 @@ class OrderFragment : Fragment() {
 
         if (assistantExtra != null) {
             for (extraKey in assistantExtra.keySet()) {
-                Log.v("-thr", "Extra: " + extraKey + ": " + assistantExtra.get(extraKey))
+                Log.v("-thr", "Extra: " + extraKey + ": " + assistantExtra.getString(extraKey))
             }
         }
 

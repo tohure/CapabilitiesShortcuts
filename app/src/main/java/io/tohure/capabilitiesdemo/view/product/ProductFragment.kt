@@ -28,8 +28,8 @@ class ProductFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var productAdapter: ProductAdapter
-    lateinit var appShortcutIntent : AppShortcutIntent
-    lateinit var shortcutsClient : AssistantShortcutSuggestionsClient
+    private lateinit var appShortcutIntent : AppShortcutIntent
+    private lateinit var shortcutsClient : AssistantShortcutSuggestionsClient
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +49,7 @@ class ProductFragment : Fragment() {
         //Log extras
         if (assistantExtra != null) {
             for (extraKey in assistantExtra.keySet()) {
-                Log.v("-thr", "Extra: " + extraKey + ": " + assistantExtra.get(extraKey))
+                Log.v("-thr", "Extra: " + extraKey + ": " + assistantExtra.getString(extraKey))
             }
         }
 
@@ -112,7 +112,6 @@ class ProductFragment : Fragment() {
 
     private fun inAppPromo(category: String) {
         shortcutsClient = AssistantShortcutSuggestionsClient.builder()
-            .setAgentUid("YOUR_AGENT_ID")
             .setContext(requireContext())
             .setVerifyIntents(true)
             .build()
@@ -121,7 +120,7 @@ class ProductFragment : Fragment() {
             .setIntentName("actions.intent.OPEN_APP_FEATURE")
             .setPackageName("io.tohure.capabilitiesdemo")
             .setIntentParamName("feature")
-            .setIntentParamValue(category)
+            .setIntentParamValue("electronics")
             .build()
 
         shortcutsClient.lookupShortcut(appShortcutIntent)
@@ -146,7 +145,7 @@ class ProductFragment : Fragment() {
 
         val orderShortcut = AppShortcutSuggestion.builder()
             .setAppShortcutIntent(appShortcutIntent)
-            .setCommand("Buscar Productos $kindProductSpanish")
+            .setCommand("Buscar Productos electrónicos")
             .build()
 
         shortcutsClient.createShortcutSuggestionIntent(orderShortcut)
