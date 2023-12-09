@@ -119,7 +119,7 @@ fun HomeScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun HomePreview() {
     CapabilitiesDemoTheme {
         HomeScreen()
     }

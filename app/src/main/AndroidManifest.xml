@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CapabilitiesDemo">
         <activity
-            android:name=".view.HomeComposeActivity"
+            android:name=".view.HomeMigrationActivity"
             android:exported="true"
             android:label="@string/title_activity_home_compose"
             android:theme="@style/Theme.CapabilitiesDemo">
